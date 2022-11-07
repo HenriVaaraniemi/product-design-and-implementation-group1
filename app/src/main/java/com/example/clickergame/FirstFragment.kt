@@ -34,8 +34,11 @@ class FirstFragment : Fragment() {
 
         binding.buttonFirst.setOnClickListener {
                 binding.textviewFirst.text = (binding.textviewFirst.text.toString().toInt() + 1).toString()
+        }
 
-        //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        binding.btnPaivitukset.setOnClickListener {
+
+            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
     }
 
