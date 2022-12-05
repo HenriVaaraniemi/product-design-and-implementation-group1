@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="0"
+        android:textSize="25sp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@id/testImageButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +47,7 @@
         android:foreground="@drawable/upgrades"
         app:layout_constraintBottom_toTopOf="@+id/textview_first"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -57,10 +58,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="1"
+        android:textSize="25sp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/testImageButton" />
+
+    <ImageButton
+        android:id="@+id/button2"
+        android:layout_width="87dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="128dp"
+        android:foreground="@drawable/gearupgrades"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/textview_first"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toEndOf="@+id/btn_paivitukset"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.494" />
 </androidx.constraintlayout.widget.ConstraintLayout>

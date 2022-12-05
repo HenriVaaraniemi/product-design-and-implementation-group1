@@ -49,6 +49,9 @@ class FirstFragment : Fragment() {
 
         val db = DBhelper(requireActivity(), null)
         val cursor = db.getTotal()
+        val cursorAttack = db.getAttack()
+
+
 
         if (cursor != null && cursor.moveToLast()) {
             cursor.moveToLast()
@@ -63,10 +66,23 @@ class FirstFragment : Fragment() {
         if (cursorClick != null && cursorClick.moveToLast()) {
             cursorClick.moveToLast()
 
+            val ClickPower = cursorClick.getString(cursorClick.getColumnIndex(DBhelper.CLICK_POWER))
             binding.clickPower.text =
-                cursorClick.getString(cursorClick.getColumnIndex(DBhelper.CLICK_POWER)).toString()
+                ClickPower.toDouble().toInt().toString()
             cursorClick.close()
+
         }
+        if (cursorAttack != null && cursorAttack.moveToLast()){
+            cursorAttack.moveToLast()
+           // val attackMulti = getString(cursorAttack.getColumnIndex(DBhelper.ATTACK_POWER)).toString()
+            cursorAttack.close()
+            //val prosentti = attackMulti.toDouble().div(100)
+           // val ClickPower = binding.clickPower.text.toString().toDouble()
+
+           // binding.clickPower.text = (ClickPower * prosentti).toString()
+
+        }
+
 
         val scaleUp = AnimationUtils.loadAnimation(context,R.anim.scale_up)
         val scaleDown = AnimationUtils.loadAnimation(context,R.anim.scale_down)
@@ -91,6 +107,19 @@ class FirstFragment : Fragment() {
             binding.btnPaivitukset.startAnimation(scaleUp)
             binding.btnPaivitukset.startAnimation(scaleDown)
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+
+        binding.button2.setOnClickListener {
+
+            val db = DBhelper(requireActivity(), null)
+
+            val amount = binding.textviewFirst.text.toString().toInt()
+            val power = binding.clickPower.text.toString().toInt()
+            db.addBoth(amount, power)
+
+            findNavController().navigate(R.id.action_FirstFragment_to_thirdFragment)
+
+
         }
     }
 
