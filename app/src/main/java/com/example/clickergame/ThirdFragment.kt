@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.clickergame.databinding.FragmentThirdBinding
@@ -44,6 +45,12 @@ class ThirdFragment : Fragment() {
 
         val cursor = dbH.getPower()
 
+        val scaleUp = AnimationUtils.loadAnimation(context,R.anim.scale_up)
+        val scaleDown = AnimationUtils.loadAnimation(context,R.anim.scale_down)
+        val shake = AnimationUtils.loadAnimation(context, R.anim.shake)
+
+        binding.powerView.visibility = View.INVISIBLE
+
         if (cursor2 != null && cursor2.moveToLast()) {
             cursor2.moveToLast()
 
@@ -60,6 +67,8 @@ class ThirdFragment : Fragment() {
             cursor.close()
         }
 
+        binding.upPower.text = binding.powerView.text
+
         if (priceCursor != null && priceCursor.moveToLast()) {
             priceCursor.moveToLast()
 
@@ -73,13 +82,14 @@ class ThirdFragment : Fragment() {
 
             binding.textView3.text =
                 attackCursor.getString(attackCursor.getColumnIndex(DBhelper.ATTACK_POWER)).toString()
-            priceCursor.close()
+            attackCursor.close()
         }
 
         binding.plusButton.setOnClickListener {
             val price = binding.textView2.text.toString().toInt()
             val currentMoney = binding.moneyView.text.toString().toInt()
             val db = DBhelper(requireActivity(),null)
+
             if (currentMoney > price) {
 
                 binding.moneyView.text = (currentMoney - price).toString()
@@ -88,10 +98,18 @@ class ThirdFragment : Fragment() {
 
                 val amountMoney = binding.moneyView.text.toString().toInt()
                 val amountPower = binding.powerView.text.toString().toInt()
-                db.addBoth(amountMoney,amountPower)
+                val prosentti = binding.textView3.text.toString().toDouble().div(100)
+                val bigMath = (binding.powerView.text.toString().toDouble() * prosentti)
+                binding.upPower.text= (bigMath.toInt() + amountPower).toString()
+                val newPower = binding.upPower.text.toString().toInt()
+
+                db.addBoth(amountMoney,newPower)
+
+                binding.textView3.startAnimation(scaleUp)
+                binding.textView3.startAnimation(scaleDown)
             }
             else {
-                //binding.moneyView.startAnimation(shake)
+                binding.moneyView.startAnimation(shake)
 
                 Toast.makeText( requireActivity(),"Click more", Toast.LENGTH_SHORT).show()
             }

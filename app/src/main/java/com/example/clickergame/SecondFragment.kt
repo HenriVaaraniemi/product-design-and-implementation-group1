@@ -87,7 +87,7 @@ class SecondFragment : Fragment() {
             else {
                 binding.moneyView.startAnimation(shake)
 
-                //Toast.makeText( requireActivity(),"Click more", Toast.LENGTH_SHORT).show()
+
             }
 
         }
@@ -102,8 +102,6 @@ class SecondFragment : Fragment() {
             val amountMoney = binding.moneyView.text.toString().toInt()
 
             db.addBoth(amountMoney, amountPower)
-
-          // Toast.makeText(requireActivity(), amountPower.toString(), Toast.LENGTH_SHORT).show()
 
 
 

@@ -2,6 +2,7 @@ package com.example.clickergame
 
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.core.database.getIntOrNull
 import androidx.navigation.fragment.findNavController
 import com.example.clickergame.databinding.FragmentFirstBinding
 import com.example.clickergame.DBhelper
@@ -46,10 +48,12 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val db = DBhelper(requireActivity(), null)
         val cursor = db.getTotal()
-        val cursorAttack = db.getAttack()
+
+
+        binding.testImageButton.isSoundEffectsEnabled = false
+
 
 
 
@@ -72,24 +76,17 @@ class FirstFragment : Fragment() {
             cursorClick.close()
 
         }
-        if (cursorAttack != null && cursorAttack.moveToLast()){
-            cursorAttack.moveToLast()
-           // val attackMulti = getString(cursorAttack.getColumnIndex(DBhelper.ATTACK_POWER)).toString()
-            cursorAttack.close()
-            //val prosentti = attackMulti.toDouble().div(100)
-           // val ClickPower = binding.clickPower.text.toString().toDouble()
 
-           // binding.clickPower.text = (ClickPower * prosentti).toString()
 
-        }
 
 
         val scaleUp = AnimationUtils.loadAnimation(context,R.anim.scale_up)
         val scaleDown = AnimationUtils.loadAnimation(context,R.anim.scale_down)
 
         binding.testImageButton.setOnClickListener {
-
+            val ClickSound = MediaPlayer.create(requireActivity(), R.raw.thump)
             binding.textviewFirst.text = (binding.textviewFirst.text.toString().toInt() + (binding.clickPower.text.toString().toInt())).toString()
+            ClickSound.start()
             binding.testImageButton.startAnimation(scaleUp)
             binding.testImageButton.startAnimation(scaleDown)
 
@@ -103,7 +100,7 @@ class FirstFragment : Fragment() {
             val power = binding.clickPower.text.toString().toInt()
             db.addBoth(amount, power)
 
-            Toast.makeText(requireActivity(), amount.toString(), Toast.LENGTH_SHORT).show()
+           // Toast.makeText(requireActivity(), amount.toString(), Toast.LENGTH_SHORT).show()
             binding.btnPaivitukset.startAnimation(scaleUp)
             binding.btnPaivitukset.startAnimation(scaleDown)
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)

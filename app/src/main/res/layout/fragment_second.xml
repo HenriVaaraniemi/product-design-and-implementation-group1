@@ -20,9 +20,11 @@
 
     <Button
         android:id="@+id/morePower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:backgroundTint="@color/white"
         android:text="Increase click power"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -45,26 +47,56 @@
 
     <TextView
         android:id="@+id/moneyView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
         android:layout_marginBottom="52dp"
-        android:text="moneyView"
+        android:background="@drawable/genericbackground"
         android:gravity="center"
+        android:text="moneyView"
         app:layout_constraintBottom_toTopOf="@+id/morePower"
         app:layout_constraintEnd_toEndOf="parent"
 
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintVertical_bias="0.609" />
 
     <TextView
         android:id="@+id/priceView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@drawable/genericbackground"
+        android:gravity="center"
         android:text="Price"
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="63dp"
+        android:layout_height="72dp"
+        android:src="@drawable/moneybag"
+        app:layout_constraintBottom_toTopOf="@+id/priceView"
+        app:layout_constraintEnd_toStartOf="@+id/moneyView"
+        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.881" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:background="@drawable/genericbackground"
+        android:text="Price:"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/priceView"
+        app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

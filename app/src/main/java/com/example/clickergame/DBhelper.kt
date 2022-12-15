@@ -52,7 +52,6 @@ SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION)
 
         return db.rawQuery("SELECT $TOTAL FROM $TABLE_NAME", null)
 
-        //db.close()
     }
 
     fun getPower(): Cursor? {
@@ -61,7 +60,6 @@ SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION)
 
         return db.rawQuery("SELECT $CLICK_POWER FROM $TABLE_NAME", null)
 
-        //db.close()
     }
 
     fun getPrice(): Cursor{
